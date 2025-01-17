@@ -10,20 +10,18 @@ import './app.css'
 
 export default function App() {
   const [employees, setEmployees] = useState([
-    { name: 'John C.', salary: 800, isIncrease: true, id: 0 },
+    { name: 'John C.', salary: 800, isIncrease: false, id: 0 },
     { name: 'Alex M.', salary: 3000, isIncrease: false, id: 1 },
     { name: 'Carl W.', salary: 5000, isIncrease: true, id: 2 }
   ])
 
   // add new employee
   const handleAddEmployee = (name, salary) => {
-    console.log(name, salary)
-
     const newEmployee = {
       name,
       salary,
-      id: Date.now(),
-      isIncrease: false
+      isIncrease: false,
+      id: Date.now()
     }
 
     setEmployees(prevEmployees => [...prevEmployees, newEmployee])

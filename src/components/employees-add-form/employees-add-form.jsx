@@ -28,13 +28,15 @@ export default function EmployeesAddForm({ onAddEmployee }) {
           type="text"
           className="form-control new-post-label"
           placeholder="Как его зовут?"
+          required
         />
         <input
           value={salary}
-          onChange={e => setSalary(Number(e.target.value))}
+          onChange={e => setSalary(e.target.value)}
           type="number"
           className="form-control new-post-label"
           placeholder="З/П в $?"
+          required
         />
 
         <button type="submit" className="btn btn-outline-light">

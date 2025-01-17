@@ -9,7 +9,7 @@ export default function EmployeesList({
   onToggleLike
 }) {
   if (!employees.length) {
-    return <p className="text-center p-5 pb-4">Еще нет сотрудников</p>
+    return <p className="text-center p-5 pb-4 text-secondary">Еще нет сотрудников</p>
   }
 
   return (

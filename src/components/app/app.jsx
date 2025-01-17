@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 import AppInfo from '../app-info/app-info'
 import SearchPanel from '../search-panel/search-panel'
@@ -23,8 +24,10 @@ export default function App() {
       name,
       salary,
       isIncrease: false,
-      id: Date.now()
+      id: uuidv4()
     }
+
+    console.log(newEmployee)
 
     setEmployees(prevEmployees => [...prevEmployees, newEmployee])
   }

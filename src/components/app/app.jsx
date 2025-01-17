@@ -7,6 +7,12 @@ import EmployeesList from '../employees-list/employees-list'
 import EmployeesAddForm from '../employees-add-form/employees-add-form'
 
 export default function App() {
+  const data = [
+    { name: 'John C.', salary: 800 },
+    { name: 'Alex M.', salary: 3000 },
+    { name: 'Carl W.', salary: 5000 }
+  ]
+
   return (
     <div className="app">
       <AppInfo />
@@ -14,7 +20,7 @@ export default function App() {
         <SearchPanel />
         <AppFilter />
       </div>
-      <EmployeesList />
+      <EmployeesList employees={data} />
       <EmployeesAddForm />
     </div>
   )

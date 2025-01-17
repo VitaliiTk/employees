@@ -2,12 +2,16 @@ import EmployeesListItem from '../employees-list-item/employees-list-item'
 
 import './employees-list.css'
 
-export default function EmployeesList() {
+export default function EmployeesList({ employees }) {
   return (
     <ul className="app-list list-group">
-      <EmployeesListItem />
-      <EmployeesListItem />
-      <EmployeesListItem />
+      {employees.map(employee => (
+        <EmployeesListItem
+          key={employee.name}
+          name={employee.name}
+          salary={employee.salary}
+        />
+      ))}
     </ul>
   )
 }

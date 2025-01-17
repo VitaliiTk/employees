@@ -1,8 +1,10 @@
 import './employees-list-item.css'
 
-export default function EmployeesListItem({ name, salary }) {
+import { TbPremiumRights } from 'react-icons/tb'
+
+export default function EmployeesListItem({ name, salary, isIncrease }) {
   return (
-    <li className="list-group-item d-flex justify-content-between">
+    <li className={!isIncrease ? "list-group-item d-flex justify-content-between" : "list-group-item d-flex justify-content-between increase"}>
       <span className="list-group-item-label">{name}</span>
       <input
         type="text"
@@ -17,6 +19,7 @@ export default function EmployeesListItem({ name, salary }) {
         <button type="button" className="btn-trash btn-sm ">
           <i className="fas fa-trash"></i>
         </button>
+
         <i className="fas fa-star"></i>
       </div>
     </li>

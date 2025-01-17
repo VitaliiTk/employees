@@ -6,11 +6,7 @@ export default function EmployeesList({ employees }) {
   return (
     <ul className="app-list list-group">
       {employees.map(employee => (
-        <EmployeesListItem
-          key={employee.name}
-          name={employee.name}
-          salary={employee.salary}
-        />
+        <EmployeesListItem key={employee.id} {...employee} />
       ))}
     </ul>
   )

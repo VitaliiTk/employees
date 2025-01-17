@@ -8,6 +8,8 @@ import EmployeesAddForm from '../employees-add-form/employees-add-form'
 
 import './app.css'
 
+const companyName = 'Company Name'
+
 export default function App() {
   const [employees, setEmployees] = useState([
     { name: 'John C.', salary: 800, isIncrease: false, id: 0 },
@@ -34,7 +36,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <AppInfo />
+      <AppInfo employees={employees} companyName={companyName} />
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />

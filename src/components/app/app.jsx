@@ -9,13 +9,13 @@ import EmployeesAddForm from '../employees-add-form/employees-add-form'
 
 import './app.css'
 
-const companyName = 'Company Name'
+const companyName = 'Булочка'
 
 export default function App() {
   const [employees, setEmployees] = useState([
-    { name: 'John C.', salary: 800, isIncrease: false, id: 0 },
-    { name: 'Alex M.', salary: 3000, isIncrease: false, id: 1 },
-    { name: 'Carl W.', salary: 5000, isIncrease: true, id: 2 }
+    { name: 'John C.', salary: 800, isIncrease: true, isLike: false, id: 0 },
+    { name: 'Alex M.', salary: 3000, isIncrease: false, isLike: true, id: 1 },
+    { name: 'Carl W.', salary: 5000, isIncrease: false, isLike: false, id: 2 }
   ])
 
   // add new employee
@@ -24,6 +24,7 @@ export default function App() {
       name,
       salary,
       isIncrease: false,
+      isLike: false,
       id: uuidv4()
     }
 
@@ -37,6 +38,24 @@ export default function App() {
     setEmployees(prevEmployees => prevEmployees.filter(employee => employee.id !== id))
   }
 
+  // toggle increase
+  const handleToggleIncrease = id => {
+    setEmployees(prevEmployees =>
+      prevEmployees.map(employee =>
+        employee.id === id ? { ...employee, isIncrease: !employee.isIncrease } : employee
+      )
+    )
+  }
+
+  // toggle like
+  const handleToggleLike = id => {
+    setEmployees(prevEmployees =>
+      prevEmployees.map(employee =>
+        employee.id === id ? { ...employee, isLike: !employee.isLike } : employee
+      )
+    )
+  }
+
   return (
     <div className="app">
       <AppInfo employees={employees} companyName={companyName} />
@@ -44,7 +63,12 @@ export default function App() {
         <SearchPanel />
         <AppFilter />
       </div>
-      <EmployeesList employees={employees} onDelete={id => handleDeleteEmployee(id)} />
+      <EmployeesList
+        employees={employees}
+        onDelete={id => handleDeleteEmployee(id)}
+        onToggleIncrease={handleToggleIncrease}
+        onToggleLike={handleToggleLike}
+      />
       <EmployeesAddForm onAddEmployee={handleAddEmployee} />
     </div>
   )

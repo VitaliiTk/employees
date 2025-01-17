@@ -2,7 +2,12 @@ import EmployeesListItem from '../employees-list-item/employees-list-item'
 
 import './employees-list.css'
 
-export default function EmployeesList({ employees, onDelete }) {
+export default function EmployeesList({
+  employees,
+  onDelete,
+  onToggleIncrease,
+  onToggleLike
+}) {
   if (!employees.length) {
     return <p className="text-center p-5 pb-4">Еще нет сотрудников</p>
   }
@@ -14,6 +19,8 @@ export default function EmployeesList({ employees, onDelete }) {
           key={employee.id}
           {...employee}
           onDelete={() => onDelete(employee.id)}
+          onToggleIncrease={() => onToggleIncrease(employee.id)}
+          onToggleLike={() => onToggleLike(employee.id)}
         />
       ))}
     </ul>

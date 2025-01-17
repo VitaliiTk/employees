@@ -5,8 +5,9 @@ import './employees-list.css'
 export default function EmployeesList({
   employees,
   onDelete,
-  onToggleIncrease,
-  onToggleLike
+  // onToggleIncrease,
+  // onToggleLike,
+  onToggleProp
 }) {
   if (!employees.length) {
     return <p className="text-center p-5 pb-4 text-secondary">Еще нет сотрудников</p>
@@ -19,8 +20,11 @@ export default function EmployeesList({
           key={employee.id}
           {...employee}
           onDelete={() => onDelete(employee.id)}
-          onToggleIncrease={() => onToggleIncrease(employee.id)}
-          onToggleLike={() => onToggleLike(employee.id)}
+          // onToggleIncrease={() => onToggleIncrease(employee.id)}
+          // onToggleLike={() => onToggleLike(employee.id)}
+          onToggleProp={e =>
+            onToggleProp(employee.id, e.currentTarget.getAttribute('data-toggle'))
+          }
         />
       ))}
     </ul>

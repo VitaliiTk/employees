@@ -7,8 +7,9 @@ export default function EmployeesListItem({
   onDelete,
   isIncrease,
   isLike,
-  onToggleIncrease,
-  onToggleLike
+  // onToggleIncrease,
+  // onToggleLike,
+  onToggleProp
 }) {
   return (
     <li
@@ -16,12 +17,17 @@ export default function EmployeesListItem({
         isIncrease && 'increase'
       } ${isLike && 'like'}`}
     >
-      <span onClick={onToggleLike} className="list-group-item-label">
+      <span onClick={onToggleProp} className="list-group-item-label" data-toggle="isLike">
         {name}
       </span>
       <input type="text" className="list-group-item-input" defaultValue={salary + '$'} />
       <div className="d-flex justify-content-center align-items-center">
-        <button onClick={onToggleIncrease} type="button" className="btn-cookie btn-sm ">
+        <button
+          onClick={onToggleProp}
+          type="button"
+          className="btn-cookie btn-sm "
+          data-toggle="isIncrease"
+        >
           <i className="fas fa-cookie"></i>
         </button>
 

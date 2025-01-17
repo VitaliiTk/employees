@@ -39,19 +39,28 @@ export default function App() {
   }
 
   // toggle increase
-  const handleToggleIncrease = id => {
-    setEmployees(prevEmployees =>
-      prevEmployees.map(employee =>
-        employee.id === id ? { ...employee, isIncrease: !employee.isIncrease } : employee
-      )
-    )
-  }
+  // const handleToggleIncrease = id => {
+  //   setEmployees(prevEmployees =>
+  //     prevEmployees.map(employee =>
+  //       employee.id === id ? { ...employee, isIncrease: !employee.isIncrease } : employee
+  //     )
+  //   )
+  // }
 
   // toggle like
-  const handleToggleLike = id => {
+  // const handleToggleLike = id => {
+  //   setEmployees(prevEmployees =>
+  //     prevEmployees.map(employee =>
+  //       employee.id === id ? { ...employee, isLike: !employee.isLike } : employee
+  //     )
+  //   )
+  // }
+
+  // это универсальный метод, который позволяет переключать любое свойство у сотрудника по id и названию свойства (prop)
+  const handleToggleProp = (id, prop) => {
     setEmployees(prevEmployees =>
       prevEmployees.map(employee =>
-        employee.id === id ? { ...employee, isLike: !employee.isLike } : employee
+        employee.id === id ? { ...employee, [prop]: !employee[prop] } : employee
       )
     )
   }
@@ -66,8 +75,9 @@ export default function App() {
       <EmployeesList
         employees={employees}
         onDelete={id => handleDeleteEmployee(id)}
-        onToggleIncrease={handleToggleIncrease}
-        onToggleLike={handleToggleLike}
+        // onToggleIncrease={handleToggleIncrease}
+        // onToggleLike={handleToggleLike}
+        onToggleProp={handleToggleProp}
       />
       <EmployeesAddForm onAddEmployee={handleAddEmployee} />
     </div>

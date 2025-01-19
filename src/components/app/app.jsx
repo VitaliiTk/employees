@@ -65,22 +65,6 @@ export default function App() {
     )
   }
 
-  // // filter by button logic
-  // function onFilterByAll() {
-  //   // console.log('onFilterByAll')
-  //   setFilter(employees)
-  // }
-
-  // function onFilterByEncrease() {
-  //   // console.log('onFilterByEncrease')
-  //   setFilter(employees.filter(item => item.isIncrease))
-  // }
-
-  // function onFilterBySalary() {
-  //   // console.log('onFilterBySalary')
-  //   setFilter(employees.filter(item => item.salary > 1000))
-  // }
-
   function filterPost(items, filter) {
     switch (filter) {
       case 'increase':

@@ -52,7 +52,7 @@ export default function App() {
     )
   }
 
-  // filter by name logic
+  // search by name logic
   function onUpdateSearch(searchText) {
     setTerm(searchText)
   }
@@ -65,6 +65,7 @@ export default function App() {
     )
   }
 
+  // filter logic
   function filterPost(items, filter) {
     switch (filter) {
       case 'increase':

@@ -7,8 +7,6 @@ export default function EmployeesListItem({
   onDelete,
   isIncrease,
   isLike,
-  // onToggleIncrease,
-  // onToggleLike,
   onToggleProp
 }) {
   return (

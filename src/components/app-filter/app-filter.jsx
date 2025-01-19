@@ -3,25 +3,27 @@ import { useState } from 'react'
 import './app-filter.css'
 
 export default function AppFilter(props) {
-  return (
-    <div className="btn-group">
-      <button className="btn btn-light" type="button" onClick={props.onFilterByAll}>
-        Все сотрудники
-      </button>
+  const buttonsData = [
+    { name: 'all', label: 'Все сотрудники' },
+    { name: 'increase', label: 'На повышение' },
+    { name: 'salary', label: 'З/П больше 1000$' }
+  ]
+
+  const buttons = buttonsData.map(({ name, label }) => {
+    const active = props.filter === name
+    const clazz = active ? 'btn-light' : 'btn-outline-light'
+
+    return (
       <button
-        className="btn btn-outline-light"
+        key={name}
+        className={'btn ' + clazz}
         type="button"
-        onClick={props.onFilterByEncrease}
+        onClick={() => props.onFilterSelect(name)}
       >
-        На повышение
+        {label}
       </button>
-      <button
-        className="btn btn-outline-light"
-        type="button"
-        onClick={props.onFilterBySalary}
-      >
-        З/П больше 1000$
-      </button>
-    </div>
-  )
+    )
+  })
+
+  return <div className="btn-group">{buttons}</div>
 }

@@ -16,8 +16,8 @@ const companyName = 'Булочка'
 export default function App() {
   const [employees, setEmployees] = useState(employeesData)
   const [term, setTerm] = useState('')
-  const filterEmployeesByName = searchEmployees(employees, term)
-  const filterIncreasedEmployees = searchIncreasedEmployees(employees)
+  const [filter, setFilter] = useState('all')
+  const visibleEmployees = filterPost(searchEmployees(employees, term), filter)
 
   // add new employee
   const handleAddEmployee = (name, salary) => {
@@ -36,7 +36,11 @@ export default function App() {
 
   // delete employee
   const handleDeleteEmployee = id => {
-    setEmployees(prevEmployees => prevEmployees.filter(employee => employee.id !== id))
+    console.log('delete', id)
+
+    setEmployees(prevEmployees =>
+      prevEmployees.filter(employee => employee.id !== id)
+    )
   }
 
   // это универсальный метод, который позволяет переключать любое свойство у сотрудника по id и названию свойства (prop)
@@ -61,22 +65,35 @@ export default function App() {
     )
   }
 
-  // filter by increase logic
+  // // filter by button logic
+  // function onFilterByAll() {
+  //   // console.log('onFilterByAll')
+  //   setFilter(employees)
+  // }
 
-  function onFilterByAll() {
-    console.log('onFilterByAll')
+  // function onFilterByEncrease() {
+  //   // console.log('onFilterByEncrease')
+  //   setFilter(employees.filter(item => item.isIncrease))
+  // }
+
+  // function onFilterBySalary() {
+  //   // console.log('onFilterBySalary')
+  //   setFilter(employees.filter(item => item.salary > 1000))
+  // }
+
+  function filterPost(items, filter) {
+    switch (filter) {
+      case 'increase':
+        return items.filter(item => item.isIncrease)
+      case 'salary':
+        return items.filter(item => item.salary > 1000)
+      default:
+        return items
+    }
   }
 
-  function onFilterByEncrease() {
-    console.log('onFilterByEncrease')
-  }
-
-  function onFilterBySalary() {
-    console.log('onFilterBySalary')
-  }
-
-  function searchIncreasedEmployees(arrayData) {
-    return arrayData.filter(item => item.isIncrease)
+  function onFilterSelect(filter) {
+    setFilter(filter)
   }
 
   return (
@@ -84,14 +101,10 @@ export default function App() {
       <AppInfo employees={employees} companyName={companyName} />
       <div className="search-panel">
         <SearchPanel onUpdateSearch={onUpdateSearch} />
-        <AppFilter
-          onFilterByAll={onFilterByAll}
-          onFilterByEncrease={onFilterByEncrease}
-          onFilterBySalary={onFilterBySalary}
-        />
+        <AppFilter filter={filter} onFilterSelect={onFilterSelect} />
       </div>
       <EmployeesList
-        employees={filterEmployeesByName}
+        employees={visibleEmployees}
         onDelete={id => handleDeleteEmployee(id)}
         onToggleProp={handleToggleProp}
       />

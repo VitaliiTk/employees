@@ -14,8 +14,6 @@ export default function EmployeesList({ employees, onDelete, onToggleProp }) {
           key={employee.id}
           {...employee}
           onDelete={() => onDelete(employee.id)}
-          // onToggleIncrease={() => onToggleIncrease(employee.id)}
-          // onToggleLike={() => onToggleLike(employee.id)}
           onToggleProp={e =>
             onToggleProp(employee.id, e.currentTarget.getAttribute('data-toggle'))
           }

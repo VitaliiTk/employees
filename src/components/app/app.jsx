@@ -81,6 +81,17 @@ export default function App() {
     setFilter(filter)
   }
 
+  // change salary by employee id logic
+  const handleSalaryChange = (id, salary) => {
+    console.log('change', id, salary)
+
+    setEmployees(prevEmployees =>
+      prevEmployees.map(employee =>
+        employee.id === id ? { ...employee, salary } : employee
+      )
+    )
+  }
+
   return (
     <div className="app">
       <AppInfo employees={employees} companyName={companyName} />
@@ -92,6 +103,7 @@ export default function App() {
         employees={visibleEmployees}
         onDelete={id => handleDeleteEmployee(id)}
         onToggleProp={handleToggleProp}
+        handleSalaryChange={handleSalaryChange}
       />
       <EmployeesAddForm onAddEmployee={handleAddEmployee} />
     </div>

@@ -7,18 +7,41 @@ export default function EmployeesListItem({
   onDelete,
   isIncrease,
   isLike,
-  onToggleProp
+  onToggleProp,
+  handleSalaryChange,
+  employeeId
 }) {
+  const [salaryInput, setSalaryInput] = useState(salary)
+
+  function handleSubmit(e) {
+    e.preventDefault()
+
+    handleSalaryChange(employeeId, salaryInput)
+  }
+
   return (
     <li
       className={`list-group-item d-flex justify-content-between ${
         isIncrease && 'increase'
       } ${isLike && 'like'}`}
     >
-      <span onClick={onToggleProp} className="list-group-item-label" data-toggle="isLike">
+      <span
+        onClick={onToggleProp}
+        className="list-group-item-label"
+        data-toggle="isLike"
+      >
         {name}
       </span>
-      <input type="text" className="list-group-item-input" defaultValue={salary + '$'} />
+      <form onSubmit={handleSubmit}>
+        <input
+          value={salaryInput}
+          onChange={e => setSalaryInput(e.target.value)}
+          type="text"
+          className="list-group-item-input"
+          // defaultValue={salary + '$'}
+        />
+        <span className="money-symbol">$</span>
+      </form>
       <div className="d-flex justify-content-center align-items-center">
         <button
           onClick={onToggleProp}
